@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style type="text/css">
+			body {
+				background-image: url("background.png");
+				color: #eee8d5;
+			}
+			.timer_entry {
+				border: thin solid red;
+			}
+		</style>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+		<script>
+			var time=10000;
+			var intervalID;
+
+			function func_timer() {
+				time--;
+				$("span.tim").text(time);
+			}
+
+			function init_timer() {
+				if ( $("#btnStart").val() == "start" )
+				{
+					$("#btnStart").prop('value','stop');
+					window.clearInterval(intervalID)
+				}
+				else if ( $("#btnStart").val() == "stop" )
+				{
+					$("#btnStart").prop('value','start');
+					intervalID = window.setInterval(func_timer, 1000);
+				}
+			}
+
+			$(document).ready(function() {
+				var t = $.getJSON('times.json', function(data) {
+					$.each(data.times.entry, function(key,val) {
+						$("div#entries").append( "<div class='timer_entry'> "+val.ident+"<input type='text' class='edtTime' value='"+val.duration+"'> </div>" );
+					});
+				});
+			});
+
+		</script>
+	</head>
+
+	<body>
+		<form>
+			<div id="viewport">
+<!--				<div class="timer_entry">
+					<input type="text" class="edtTime" value="10000">
+				</div>
+-->
+				<div id="entries"></div>
+				<div class="overview">
+					Noch <span class="tim"></span> Minuten
+					<input type="button" id="btnStart" value="start" onclick="init_timer()">
+				</div>
+			</div>
+		</form>
+	</body>
+</html>

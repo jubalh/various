@@ -1,0 +1,17 @@
+{
+    "times": {
+        "entry": [
+            {
+                "duration": 5000,
+                "ident": "Warm-Up",
+				"pause": 30
+            },
+            {
+                "duration": 10000,
+                "ident": "Metall",
+				"pause": 30
+            }
+        ]
+    }
+}
+
