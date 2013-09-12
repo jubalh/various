@@ -1,0 +1,47 @@
+<session>
+   <task>
+      <desc>warm up</desc>
+      <duration>00:05:00</duration>
+      <repeat>1</repeat>
+   </task>
+   <task>
+      <desc>Metall</desc>
+      <duration>00:10:00</duration>
+      <repeat>0</repeat>
+   </task>
+   <task>
+      <desc>Wasser</desc>
+      <duration>00:05:00</duration>
+      <repeat>1</repeat>
+   </task>
+   <task>
+      <desc>Wuji</desc>
+      <duration>00:05:00</duration>
+      <repeat>0</repeat>
+   </task>
+   <task>
+      <desc>Feuer</desc>
+      <duration>00:05:00</duration>
+      <repeat>0</repeat>
+   </task>
+   <task>
+      <desc>Cool down</desc>
+      <duration>00:10:00</duration>
+      <repeat>0</repeat>
+   </task>
+</session>
+
+$(document).ready(function(){
+   $.ajax({
+   type: "GET",
+   url: "sites.xml",
+   dataType: "xml",
+   success: function(xml) {
+      $(xml).find('task').each(function(){
+         var id = $(this).attr('id');
+         var desc = $(this).find('desc').text();
+         $('<div class="items" id="link_'+id+'"></div>').html('<a href="'+url+'">'+title+'</a>').appendTo('#page-wrap');
+         });
+      }
+   });
+});
