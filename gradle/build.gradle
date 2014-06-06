@@ -1,0 +1,5 @@
+apply plugin: 'java'
+task helloWorld << {
+	println 'hello, world'
+}
+
